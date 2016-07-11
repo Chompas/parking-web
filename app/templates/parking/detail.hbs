@@ -1,0 +1,41 @@
+<h1 class="ui center aligned header">Detalle</h1>
+
+<div class="ui card centered">
+  <div class="content">
+    <div class="header">{{model.parking.name}}</div>
+    <div class="meta">
+      <span class="category">Precio: ${{model.parking.price}}/hora</span>
+    </div>
+    <div class="description">
+      <p>{{model.parking.address}}</p>
+    </div>
+  </div>
+  <div class="extra content">
+    Disponibilidad: {{model.parking.occupancy}}
+  </div>
+</div>
+
+<table class="ui green table">
+  <thead>
+    <tr>
+      <th>Codigo</th>
+      <th>Fecha</th>
+      <th>Confirmado</th>
+      <th>Validar</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model.bookings as |booking|}}
+    <tr>
+      <td>{{booking.code}}</td>
+      <td>{{moment-format booking.createdAt 'LLLL'}}</td>
+      <td>{{to-yes-no booking.confirmed}}</td>
+      <td><button disabled={{booking.confirmed}} {{action 'confirmBooking' booking}} class="ui button green">Confirmar</button></td>
+    </tr>
+    {{else}}
+    <tr>
+      <td>No hay reservas</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

@@ -1,0 +1,24 @@
+<h1 class="ui center aligned header">Estacionamientos</h1>
+
+<table class="ui green table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Horas</th>
+      <th>Direccion</th>
+      <th>Disponibilidad</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model as |parking|}}
+    <tr>
+      <td>{{#link-to 'parking.detail' parking.id}}{{parking.name}}{{/link-to}}</td>
+      <td>{{parking.price}}</td>
+      <td>{{parking.hours}}</td>
+      <td>{{parking.address}}</td>
+      <td>{{parking.occupancy}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
